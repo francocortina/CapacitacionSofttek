@@ -1,6 +1,6 @@
 package Ej7Banco.Main;
 
-import Ej7Banco.Modelo.*;
+import Ej7Banco.Services.ClienteService;
 
 import java.util.Scanner;
 
@@ -49,38 +49,40 @@ public class Main {
 //        System.out.println(BancoFrances.getListaCuentasCorrientes());
 //
         /*Me falta hacer solo la impresion de la lista de cuuentas de cada empleado*/
-        Scanner scanner= new Scanner(System.in);
-        int option;
-do {
-    System.out.println("Elija la operación deseada");
-    System.out.println("1- Agregar Cliente");
-    System.out.println("2- Agregar cuenta a cliente");
-    System.out.println("3- Listar clientes por sucursal");
-    System.out.println("4- Listar Clientes de una sucursal");
-    System.out.println("5- Extraer Dinero");
-    System.out.println("6- Consultar saldo");
-    System.out.println("7- Realizar deposito");
-    System.out.println("8- Realizar Transferencia");
-    System.out.println("9- Eliminar una sucursal");
+//        Scanner scanner= new Scanner(System.in);
+//        int option;
+//do {
+//    System.out.println("Elija la operación deseada");
+//    System.out.println("1- Agregar Cliente");
+//    System.out.println("2- Agregar cuenta a cliente");
+//    System.out.println("3- Listar clientes por sucursal");
+//    System.out.println("4- Listar Clientes de una sucursal");
+//    System.out.println("5- Extraer Dinero");
+//    System.out.println("6- Consultar saldo");
+//    System.out.println("7- Realizar deposito");
+//    System.out.println("8- Realizar Transferencia");
+//    System.out.println("9- Eliminar una sucursal");
+//
+//
+//
+//
+//
+//        option= scanner.nextInt();
+//    switch (option){
+//
+//    }
+//}while(option!=0);
+//
+//
 
 
-
-
-
-        option= scanner.nextInt();
-    switch (option){
-
-    }
-}while(option!=0);
-
-
-
-
-
-
-
-
-
+//        ClienteService cliente= new ClienteService();
+//        cliente.agregar("40895","Franco","Cortina",42553,"franco.cug@gmail.com","2022/04/04","La Plata",2);
+        ClienteService cliente1= new ClienteService();
+        cliente1.agregar("40895483","Franco","Cortina","2216736598","franco.cug@gmail.com","17/05/2022");
+//
+//
+//
 
 
 
