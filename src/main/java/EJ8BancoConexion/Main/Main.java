@@ -70,7 +70,7 @@ public class Main {
                             telefono= scanner.next();
                             System.out.println("Ingrese su email");
                             email= scanner.next();
-                            //Lo dejé fijo en La Plata, sino tendría que crear un DAO de Sucursal o agregarlas a la BD directamente
+
                             emp = new EmpleadoService();
                             emp.actualizar(dni,nombre,apellido,telefono,email);
                             break;
