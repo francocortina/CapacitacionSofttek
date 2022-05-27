@@ -24,7 +24,7 @@ toda la aplicacion.
 Fabrica:Devolver instancias de una clase en particular por medio
 de un identificador
 
-Fabrica Abstracta
+Fabrica Abstracta. Es una fabrica de fabricas, mediante una interface abstracata de Fábricas.
 
-
+Prototipo:Crear una nueva instancia con los valores clonados de otra instancia.
 * */
