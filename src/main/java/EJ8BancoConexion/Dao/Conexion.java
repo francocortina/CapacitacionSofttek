@@ -10,7 +10,10 @@ private static final String PASSWORD= "";
 private static final String URL= "jdbc:mysql://localhost:3306/banco";
 private Connection CN;
 
-public Conexion(){
+//Patrón Singleton
+private static Conexion instancia;
+
+private Conexion(){
     CN=null;
 }
 
@@ -25,6 +28,15 @@ public Connection getConnection(){
 return CN;
 
 }
+
+//Patrón Singleton
+public static Conexion getInstance(){
+        if(instancia==null){
+            instancia= new Conexion();
+        }
+        return instancia;
+
+    }
 
 
 public void close(){

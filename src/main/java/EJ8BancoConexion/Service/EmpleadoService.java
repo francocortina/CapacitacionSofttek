@@ -1,8 +1,8 @@
 package EJ8BancoConexion.Service;
 
 
-import EJ8BancoConexion.Beans.Empleado;
-import EJ8BancoConexion.Beans.Sucursal;
+import EJ8BancoConexion.Models.Empleado;
+import EJ8BancoConexion.Models.Sucursal;
 import EJ8BancoConexion.Dao.EmpleadoDao;
 
 

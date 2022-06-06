@@ -1,6 +1,6 @@
 package EJ8BancoConexion.Dao;
 
-import EJ8BancoConexion.Beans.CajaDeAhorro;
+import EJ8BancoConexion.Models.CajaDeAhorro;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class CajaDeAhorroDao implements ICuenta<CajaDeAhorro> {
 
     public CajaDeAhorroDao(){
         ps=null;
-        cn=new Conexion();
+        cn=Conexion.getInstance();
 
     }
 

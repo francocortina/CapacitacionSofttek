@@ -1,9 +1,9 @@
 package EJ8BancoConexion.Service;
 
-import EJ8BancoConexion.Beans.CajaDeAhorro;
+import EJ8BancoConexion.Models.CajaDeAhorro;
 
-import EJ8BancoConexion.Beans.Cliente;
-import EJ8BancoConexion.Beans.TipoMoneda;
+import EJ8BancoConexion.Models.Cliente;
+import EJ8BancoConexion.Models.TipoMoneda;
 import EJ8BancoConexion.Dao.CajaDeAhorroDao;
 
 

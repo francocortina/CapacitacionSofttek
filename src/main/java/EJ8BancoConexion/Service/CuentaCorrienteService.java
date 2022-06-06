@@ -1,7 +1,7 @@
 package EJ8BancoConexion.Service;
 
-import EJ8BancoConexion.Beans.Cliente;
-import EJ8BancoConexion.Beans.CuentaCorriente;
+import EJ8BancoConexion.Models.Cliente;
+import EJ8BancoConexion.Models.CuentaCorriente;
 import EJ8BancoConexion.Dao.CuentaCorrienteDao;
 
 import javax.swing.*;

@@ -1,6 +1,6 @@
 package EJ8BancoConexion.Dao;
 
-import EJ8BancoConexion.Beans.CuentaCorriente;
+import EJ8BancoConexion.Models.CuentaCorriente;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class CuentaCorrienteDao implements ICuenta<CuentaCorriente>{
 
     public CuentaCorrienteDao(){
         ps=null;
-        cn=new Conexion();
+        cn=Conexion.getInstance();
 
     }
 

@@ -1,7 +1,7 @@
 package EJ8BancoConexion.Service;
 
-import EJ8BancoConexion.Beans.Cliente;
-import EJ8BancoConexion.Beans.Sucursal;
+import EJ8BancoConexion.Models.Cliente;
+import EJ8BancoConexion.Models.Sucursal;
 import EJ8BancoConexion.Dao.ClienteDao;
 
 public class ClienteService {

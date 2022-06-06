@@ -1,13 +1,11 @@
 package EJ8BancoConexion.Main;
 
 
-import EJ8BancoConexion.Beans.Cliente;
-import EJ8BancoConexion.Beans.Sucursal;
-import EJ8BancoConexion.Beans.TipoMoneda;
-import EJ8BancoConexion.Service.CajaDeAhorroService;
-import EJ8BancoConexion.Service.ClienteService;
-import EJ8BancoConexion.Service.CuentaCorrienteService;
-import EJ8BancoConexion.Service.EmpleadoService;
+import EJ8BancoConexion.Models.Banco;
+import EJ8BancoConexion.Models.Cliente;
+import EJ8BancoConexion.Models.Sucursal;
+import EJ8BancoConexion.Models.TipoMoneda;
+import EJ8BancoConexion.Service.*;
 
 import java.util.Scanner;
 
@@ -16,12 +14,15 @@ public class Main {
         /*Solo falta hacer los metodos de Sucursal, pero el programa anda*/
         String dni;
         String nombre;
+        String nombre2;
         String apellido;
         String telefono;
         String email;
         String cbu;
         Double monto;
        TipoMoneda tipo;
+       String banco;
+
 
 
         int option;
@@ -39,10 +40,15 @@ public class Main {
                     System.out.println("1-Crear Cuenta Empleado");
                     System.out.println("2-Modificar Cuenta Empleado");
                     System.out.println("3-Eliminar cuenta Empleado");
+                    System.out.println("4-Crear Sucursal");
+                    System.out.println("5-Modificar Sucursal");
+                    System.out.println("6-Eliminar Sucursal");
+                    System.out.println("7-Listar Sucursales");
                     System.out.println("0-Exit");
                     option= scanner.nextInt();
                     switch (option){
                         case 1:
+                            scanner.nextLine();
                             System.out.println("Ingrese su dni");
                             dni= scanner.next();
                             System.out.println("Ingrese su nombre");
@@ -53,9 +59,10 @@ public class Main {
                             telefono= scanner.next();
                             System.out.println("Ingrese su email");
                             email= scanner.next();
-                            //Lo dejé fijo en La Plata, sino tendría que crear un DAO de Sucursal o agregarlas a la BD directamente
+                            System.out.println("Ingrese la sucursal: ");
+                            nombre2=scanner.nextLine();
                             EmpleadoService emp = new EmpleadoService();
-                            emp.agregar(dni,nombre,apellido,telefono,email,new Sucursal("La Plata"));
+                            emp.agregar(dni,nombre,apellido,telefono,email,new Sucursal(nombre2));
                             break;
                         case 2:
 
@@ -81,6 +88,36 @@ public class Main {
                             emp = new EmpleadoService();
                             emp.eliminar(dni);
                             break;
+                        case 4:
+                            scanner.nextLine();
+                            System.out.println("Nombre de la Nueva Sucursal");
+                            nombre= scanner.nextLine();
+                            SucursalService suc= new SucursalService();
+                            suc.agregar(nombre,new Banco("BBVA"));
+
+                            break;
+                        case 5:
+                            scanner.nextLine();
+                            System.out.println("No se cambiaran nombres de sucursales con Clientes ya inscriptos");
+
+                            System.out.println("       Ingrese Sucursal que desea cambiar: ");
+                            nombre= scanner.nextLine();
+                            System.out.println("Ingrese Nuevo nombre");
+                            nombre2= scanner.nextLine();
+                            suc= new SucursalService();
+                            suc.actualizar(nombre,nombre2);
+                            break;
+                        case 6:
+                            scanner.nextLine();
+                            System.out.println("Nombre de Sucursal a eliminar");
+                            nombre=scanner.nextLine();
+                            suc=new SucursalService();
+                            suc.eliminar(nombre);
+                            break;
+                        case 7:
+                            suc=new SucursalService();
+                            suc.mostrarSucursales();
+                            break;
                     }
                     break;
                 case 2:
@@ -104,9 +141,10 @@ public class Main {
                             telefono= scanner.next();
                             System.out.println("Ingrese su email");
                             email= scanner.next();
+                            System.out.println("Ingrese la sucursal: ");
+                            nombre2=scanner.nextLine();
                             ClienteService cli= new ClienteService();
-                            //Por el momento solo lo agrego a la sucursal La Plata sino tendría que crear otro Dao para sucursal o agregarlo directamente
-                            cli.agregar(dni,nombre,apellido,telefono,email,new Sucursal("La Plata"));
+                            cli.agregar(dni,nombre,apellido,telefono,email,new Sucursal(nombre2));
                             break;
                         case 2:
                             System.out.println("Ingrese su dni");
@@ -121,7 +159,6 @@ public class Main {
                             System.out.println("Ingrese su email");
                             email= scanner.next();
                             cli= new ClienteService();
-                            //Por el momento solo lo agrego a la sucursal La Plata sino tendría que crear otro Dao apra sucursal o agregarlo directamente
                             cli.actualizar(dni,nombre,apellido,telefono,email);
                             break;
                         case 3:
@@ -143,7 +180,7 @@ public class Main {
                             switch (option){
                                 case 1:
                                     //Esta opcion tendria que estar en la parte de empleado
-                                    //Para crearle la cuenta al cliente,, lo puse acá para diferenciar las tareas
+                                    //Para crearle la cuenta al cliente, lo puse acá para diferenciar las tareas
                                     System.out.println("Ingrese su dni de Cliente");
                                     dni= scanner.next();
                                     System.out.println("Ingrese monto inicial, agregar .00 al final");

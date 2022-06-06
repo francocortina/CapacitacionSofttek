@@ -1,7 +1,7 @@
 package EJ8BancoConexion.Dao;
 
 
-import EJ8BancoConexion.Beans.Empleado;
+import EJ8BancoConexion.Models.Empleado;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ private PreparedStatement ps;
 private Conexion cn;
 public EmpleadoDao(){
     ps=null;
-    cn= new Conexion();
+    cn=Conexion.getInstance();
 }
     @Override
     public boolean agregar(Empleado obj) {

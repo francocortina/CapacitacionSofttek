@@ -1,9 +1,10 @@
 package EJ8BancoConexion.Dao;
 
-import EJ8BancoConexion.Beans.Cliente;
+import EJ8BancoConexion.Models.Cliente;
 
 import javax.swing.*;
 import java.sql.*;
+
 
 public class ClienteDao implements IPersona <Cliente>{
     private final String insert="INSERT INTO cliente(dni,nombreCliente,apellidoCliente,telefono,email,nombreSucursalfk)VALUES (?,?,?,?,?,?)";
@@ -15,8 +16,7 @@ public class ClienteDao implements IPersona <Cliente>{
 
     public ClienteDao() {
         ps=null;
-        CN= new Conexion();
-
+        CN=Conexion.getInstance();
     }
     @Override
     public boolean agregar(Cliente obj) {
