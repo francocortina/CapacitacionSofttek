@@ -37,9 +37,9 @@ public class CuentaCorrienteService {
     }
 
     //Depositar en Cuenta Corriente
-    public void depositar(Double monto, String cbu){
+    public void depositarCuentaCorriente(Double monto, String cbu,String cbu2){
         try {
-            corriente.depositar(monto,cbu);
+            corriente.depositarCuentaCorriente(monto,cbu,cbu2);
         }catch (Exception ex){
             JOptionPane.showMessageDialog(null,"Error en Depositar service"+ex.getMessage());
         }
@@ -68,6 +68,13 @@ public class CuentaCorrienteService {
 
     }
 
+    public void depositar(Double monto, String cbu){
+        try {
+            corriente.depositar(monto,cbu);
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null,"Error en Depositar service"+ex.getMessage());
+        }
 
+    }
 
 }

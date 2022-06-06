@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        /*Solo falta hacer los metodos de Sucursal, pero el programa anda*/
+       
         String dni;
         String nombre;
         String nombre2;
@@ -20,8 +20,8 @@ public class Main {
         String email;
         String cbu;
         Double monto;
-       TipoMoneda tipo;
-       String banco;
+        TipoMoneda tipo;
+
 
 
 
@@ -109,7 +109,8 @@ public class Main {
                             break;
                         case 6:
                             scanner.nextLine();
-                            System.out.println("Nombre de Sucursal a eliminar");
+                            System.out.println("No se podrá eliminar sucursales mientras haya cuentas vigentes");
+                            System.out.println("        Nombre de Sucursal a eliminar");
                             nombre=scanner.nextLine();
                             suc=new SucursalService();
                             suc.eliminar(nombre);
@@ -131,59 +132,60 @@ public class Main {
                     option= scanner.nextInt();
                     switch (option){
                         case 1:
+                            scanner.nextLine();
                             System.out.println("Ingrese su dni");
-                            dni= scanner.next();
+                            dni= scanner.nextLine();
                             System.out.println("Ingrese su nombre");
-                            nombre= scanner.next();
+                            nombre= scanner.nextLine();
                             System.out.println("Ingrese su apellido");
-                            apellido= scanner.next();
+                            apellido= scanner.nextLine();
                             System.out.println("Ingrese su telefono");
-                            telefono= scanner.next();
+                            telefono= scanner.nextLine();
                             System.out.println("Ingrese su email");
-                            email= scanner.next();
+                            email= scanner.nextLine();
                             System.out.println("Ingrese la sucursal: ");
                             nombre2=scanner.nextLine();
                             ClienteService cli= new ClienteService();
                             cli.agregar(dni,nombre,apellido,telefono,email,new Sucursal(nombre2));
                             break;
                         case 2:
+                            scanner.nextLine();
                             System.out.println("Ingrese su dni");
-                            dni= scanner.next();
+                            dni= scanner.nextLine();
                             System.out.println("Puede cambiar o mantener sus datos de perfil");
                             System.out.println("Ingrese su nombre");
-                            nombre= scanner.next();
+                            nombre= scanner.nextLine();
                             System.out.println("Ingrese su apellido");
-                            apellido= scanner.next();
+                            apellido= scanner.nextLine();
                             System.out.println("Ingrese su telefono");
-                            telefono= scanner.next();
+                            telefono= scanner.nextLine();
                             System.out.println("Ingrese su email");
-                            email= scanner.next();
+                            email= scanner.nextLine();
                             cli= new ClienteService();
                             cli.actualizar(dni,nombre,apellido,telefono,email);
                             break;
                         case 3:
+                            scanner.nextLine();
                             System.out.println("¿Desea eliminar su cuenta?");
                             System.out.println("Ingrese su numero de dni: ");
-                            dni= scanner.next();
+                            dni= scanner.nextLine();
                             cli = new ClienteService();
                             cli.eliminar(dni);
                             break;
 
                         case 4:
                             System.out.println("1-Crear cuenta Corriente");
-                            System.out.println("2-Extraer Dinero");
-                            System.out.println("3-Depositar Dinero");
+                            System.out.println("2-Depositar Dinero");
+                            System.out.println("3-Transferir Dinero");
                             System.out.println("4-Eliminar cuenta Corriente");
                             System.out.println("5-Mostrar Saldo");
                             System.out.println("0-Exit");
                             option=scanner.nextInt();
                             switch (option){
                                 case 1:
-                                    //Esta opcion tendria que estar en la parte de empleado
-                                    //Para crearle la cuenta al cliente, lo puse acá para diferenciar las tareas
                                     System.out.println("Ingrese su dni de Cliente");
                                     dni= scanner.next();
-                                    System.out.println("Ingrese monto inicial, agregar .00 al final");
+                                    System.out.println("Ingrese monto inicial");
                                     monto= scanner.nextDouble();
                                     System.out.println("Ingrese la clave de CBU que desea crear");
                                     cbu= scanner.next();
@@ -193,18 +195,20 @@ public class Main {
                                 case 2:
                                     System.out.println("Ingrese su CBU");
                                     cbu= scanner.next();
-                                    System.out.println("Ingrese el monto a extraer, agregar .00");
-                                    monto= scanner.nextDouble();
-                                    corriente=new CuentaCorrienteService();
-                                    corriente.extraer(monto,cbu);
-                                    break;
-                                case 3:
-                                    System.out.println("Ingrese su CBU");
-                                    cbu= scanner.next();
-                                    System.out.println("Ingrese monto a depositar, agregar .00 al final");
+                                    System.out.println("Ingrese el monto a depositar");
                                     monto= scanner.nextDouble();
                                     corriente=new CuentaCorrienteService();
                                     corriente.depositar(monto,cbu);
+                                    break;
+                                case 3:
+                                    System.out.println("Ingrese su cbu");
+                                    cbu= scanner.next();
+                                    System.out.println("Ingrese monto a transferir");
+                                    monto= scanner.nextDouble();
+                                    System.out.println("Ingrese cbu del receptor");
+                                    String cbu2= scanner.next();
+                                    corriente=new CuentaCorrienteService();
+                                    corriente.depositarCuentaCorriente(monto,cbu,cbu2);
                                     break;
                                 case 4:
                                     System.out.println("Ingrese su cbu para ELIMINAR su cuenta Corriente");
@@ -237,7 +241,7 @@ public class Main {
                                     //Podría hacerlo con un if el tipo de moneda, lo pongo directo por ser un proyecto nuestro
                                     System.out.println("Ingrese el tipo de Moneda de la cuenta en Mayúscula, PESOS/DOLARES/EUROS");
                                     tipo= TipoMoneda.valueOf(scanner.next());
-                                    System.out.println("Ingrese monto inicial, agregar .00 al final");
+                                    System.out.println("Ingrese monto inicial");
                                     monto= scanner.nextDouble();
                                     System.out.println("Ingrese la clave de CBU que desea crear ");
                                     cbu= scanner.next();
@@ -248,7 +252,7 @@ public class Main {
                                 case 2:
                                     System.out.println("Ingrese su CBU");
                                     cbu= scanner.next();
-                                    System.out.println("Ingrese el monto a extraer, agregar .00");
+                                    System.out.println("Ingrese el monto a extraer");
                                     monto= scanner.nextDouble();
                                     ahorro=new CajaDeAhorroService();
                                     ahorro.extraer(monto,cbu);
@@ -256,7 +260,7 @@ public class Main {
                                 case 3:
                                     System.out.println("Ingrese su CBU");
                                     cbu= scanner.next();
-                                    System.out.println("Ingrese monto a depositar, agregar .00 al final");
+                                    System.out.println("Ingrese monto a depositar");
                                     monto= scanner.nextDouble();
                                     ahorro=new CajaDeAhorroService();
                                     ahorro.depositar(monto,cbu);

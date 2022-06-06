@@ -104,7 +104,7 @@ public class CajaDeAhorroDao implements ICuenta<CajaDeAhorro> {
             ps.setDouble(3,monto);
             int res=  ps.executeUpdate();
             if(res>0){
-                JOptionPane.showMessageDialog(null,"SALDO DEPPOSITADO");
+                JOptionPane.showMessageDialog(null,"SALDO DEPOSITADO");
             }else{
                 System.out.println("NO SE PERMITEN NEGATIVOS");
             }
@@ -114,6 +114,11 @@ public class CajaDeAhorroDao implements ICuenta<CajaDeAhorro> {
 
         cn.close();
 
+
+    }
+
+    @Override
+    public void depositarCuentaCorriente(Double monto, String cbu, String cbu2) throws SQLException {
 
     }
 

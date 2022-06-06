@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLTransactionRollbackException;
 
 public class CuentaCorrienteDao implements ICuenta<CuentaCorriente>{
 
@@ -74,13 +75,15 @@ public class CuentaCorrienteDao implements ICuenta<CuentaCorriente>{
     public Double extraer(Double monto,String cbu) {
         try{
         //1- Hacer la conexion con (cn) e instanciar la llamada con (ps)
+
         ps= cn.getConnection().prepareCall(extraer);
         ps.setDouble(1,monto);
         ps.setString(2, cbu);
         ps.setDouble(3,monto);
+
         int res=  ps.executeUpdate();
         if(res>0){
-            JOptionPane.showMessageDialog(null,"MONTO EXTRAIDO");
+            JOptionPane.showMessageDialog(null,"MONTO EXTRAIDO DE SU CUENTA");
         }else{
             System.out.println("Saldo insuficiente");
         }
@@ -94,22 +97,23 @@ public class CuentaCorrienteDao implements ICuenta<CuentaCorriente>{
 
     //Depositar monto por cbu
     @Override
-    public void depositar(Double monto,String cbu) {
+    public void depositarCuentaCorriente(Double monto,String cbu,String cbu2) throws SQLException {
 
         try{
             //1- Hacer la conexion con (cn) e instanciar la llamada con (ps)
+            extraer(monto,cbu);
             ps= cn.getConnection().prepareCall(depositar);
             ps.setDouble(1,monto);
-            ps.setString(2, cbu);
+            ps.setString(2, cbu2);
             ps.setDouble(3,monto);
             int res=  ps.executeUpdate();
+
             if(res>0){
-                JOptionPane.showMessageDialog(null,"SALDO DEPPOSITADO");
-            }else{
-                System.out.println("NO SE PERMITEN NEGATIVOS");
+                JOptionPane.showMessageDialog(null,"SALDO TRANSFERIDO A CBU: "+cbu2);
             }
         }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al depositar saldo "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al Transferir saldo "+ex.getMessage());
+
         }
 
         cn.close();
@@ -133,6 +137,26 @@ public class CuentaCorrienteDao implements ICuenta<CuentaCorriente>{
             JOptionPane.showMessageDialog(null,"Error al mostrar saldo  en DAO"+ex.getMessage());
         }
         return null;
+
+    }
+    public void depositar(Double monto, String cbu) throws SQLException {
+        try{
+            //1- Hacer la conexion con (cn) e instanciar la llamada con (ps)
+            ps= cn.getConnection().prepareCall(depositar);
+            ps.setDouble(1,monto);
+            ps.setString(2, cbu);
+            ps.setDouble(3,monto);
+            int res=  ps.executeUpdate();
+            if(res>0){
+                JOptionPane.showMessageDialog(null,"SALDO DEPPOSITADO");
+            }else{
+                System.out.println("NO SE PERMITEN NEGATIVOS");
+            }
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al depositar saldo "+ex.getMessage());
+        }
+
+        cn.close();
 
     }
 }

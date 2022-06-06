@@ -21,6 +21,7 @@ public Connection getConnection(){
     try {
         Class.forName(DRIVER);
         CN= DriverManager.getConnection(URL,USER,PASSWORD);
+
     }catch (ClassNotFoundException | SQLException ex){
 
         System.out.println("Error en conexion "+ex.getMessage());

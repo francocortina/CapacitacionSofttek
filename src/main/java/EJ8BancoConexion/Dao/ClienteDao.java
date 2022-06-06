@@ -38,7 +38,7 @@ public class ClienteDao implements IPersona <Cliente>{
            }
         } catch (SQLException e) {
             System.out.println("Error en la parte de clienteDao"+ e.getMessage());
-            e.printStackTrace();
+
         }finally {
             ps=null;
 
