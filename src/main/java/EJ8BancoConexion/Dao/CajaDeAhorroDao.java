@@ -24,7 +24,7 @@ public class CajaDeAhorroDao implements ICuenta<CajaDeAhorro> {
     }
 
 
-    //Agregar Cuenta CajaDeAhorro
+
     @Override
     public void agregar(CajaDeAhorro obj) {
         try{
@@ -92,7 +92,7 @@ public class CajaDeAhorroDao implements ICuenta<CajaDeAhorro> {
         return null;
     }
 
-    //Depositar monto por cbu caja de ahorro
+
     @Override
     public void depositar(Double monto,String cbu) {
 

@@ -9,9 +9,11 @@ import EJ8BancoConexion.Service.*;
 
 import java.util.Scanner;
 
+import static EJ8BancoConexion.Validaciones.Validaciones.*;
+
 public class Main {
     public static void main(String[] args) {
-       
+
         String dni;
         String nombre;
         String nombre2;
@@ -50,41 +52,47 @@ public class Main {
                         case 1:
                             scanner.nextLine();
                             System.out.println("Ingrese su dni");
-                            dni= scanner.next();
+                            dni= scanner.nextLine();
+                            if(verificarDni(dni)){break;}
                             System.out.println("Ingrese su nombre");
-                            nombre= scanner.next();
+                            nombre= scanner.nextLine();
                             System.out.println("Ingrese su apellido");
-                            apellido= scanner.next();
+                            apellido= scanner.nextLine();
                             System.out.println("Ingrese su telefono");
-                            telefono= scanner.next();
+                            telefono= scanner.nextLine();
                             System.out.println("Ingrese su email");
-                            email= scanner.next();
+                            email= scanner.nextLine();
+                            if(verificarEmail(email)){option=0;
+                            break;}
                             System.out.println("Ingrese la sucursal: ");
                             nombre2=scanner.nextLine();
                             EmpleadoService emp = new EmpleadoService();
                             emp.agregar(dni,nombre,apellido,telefono,email,new Sucursal(nombre2));
                             break;
                         case 2:
-
+                            scanner.nextLine();
                             System.out.println("Ingrese su dni");
-                            dni= scanner.next();
+                            dni= scanner.nextLine();
+                            if(verificarDni(dni)){break;}
                             System.out.println("Puede cambiar o mantener sus datos de perfil");
                             System.out.println("Ingrese su nombre");
-                            nombre= scanner.next();
+                            nombre= scanner.nextLine();
                             System.out.println("Ingrese su apellido");
-                            apellido= scanner.next();
+                            apellido= scanner.nextLine();
                             System.out.println("Ingrese su telefono");
-                            telefono= scanner.next();
+                            telefono= scanner.nextLine();
                             System.out.println("Ingrese su email");
-                            email= scanner.next();
+                            email= scanner.nextLine();
+                            if(verificarEmail(email)){break;}
 
                             emp = new EmpleadoService();
                             emp.actualizar(dni,nombre,apellido,telefono,email);
                             break;
                         case 3:
+                            scanner.nextLine();
                             System.out.println("¿Desea eliminar su cuenta?");
                             System.out.println("Ingrese su numero de dni: ");
-                            dni= scanner.next();
+                            dni= scanner.nextLine();
                             emp = new EmpleadoService();
                             emp.eliminar(dni);
                             break;
@@ -135,6 +143,7 @@ public class Main {
                             scanner.nextLine();
                             System.out.println("Ingrese su dni");
                             dni= scanner.nextLine();
+                            if(verificarDni(dni)){break;}
                             System.out.println("Ingrese su nombre");
                             nombre= scanner.nextLine();
                             System.out.println("Ingrese su apellido");
@@ -143,6 +152,7 @@ public class Main {
                             telefono= scanner.nextLine();
                             System.out.println("Ingrese su email");
                             email= scanner.nextLine();
+                            if(verificarEmail(email)){break;}
                             System.out.println("Ingrese la sucursal: ");
                             nombre2=scanner.nextLine();
                             ClienteService cli= new ClienteService();
@@ -152,6 +162,7 @@ public class Main {
                             scanner.nextLine();
                             System.out.println("Ingrese su dni");
                             dni= scanner.nextLine();
+                            if(verificarDni(dni)){break;}
                             System.out.println("Puede cambiar o mantener sus datos de perfil");
                             System.out.println("Ingrese su nombre");
                             nombre= scanner.nextLine();
@@ -161,6 +172,7 @@ public class Main {
                             telefono= scanner.nextLine();
                             System.out.println("Ingrese su email");
                             email= scanner.nextLine();
+                            if(verificarEmail(email)){break;}
                             cli= new ClienteService();
                             cli.actualizar(dni,nombre,apellido,telefono,email);
                             break;
@@ -187,6 +199,7 @@ public class Main {
                                     dni= scanner.next();
                                     System.out.println("Ingrese monto inicial");
                                     monto= scanner.nextDouble();
+                                    if(verificarNegativos(monto)){break;}
                                     System.out.println("Ingrese la clave de CBU que desea crear");
                                     cbu= scanner.next();
                                     CuentaCorrienteService corriente= new CuentaCorrienteService();
@@ -197,6 +210,7 @@ public class Main {
                                     cbu= scanner.next();
                                     System.out.println("Ingrese el monto a depositar");
                                     monto= scanner.nextDouble();
+                                    if(verificarNegativos(monto)){break;}
                                     corriente=new CuentaCorrienteService();
                                     corriente.depositar(monto,cbu);
                                     break;
@@ -205,6 +219,7 @@ public class Main {
                                     cbu= scanner.next();
                                     System.out.println("Ingrese monto a transferir");
                                     monto= scanner.nextDouble();
+                                    if(verificarNegativos(monto)){break;}
                                     System.out.println("Ingrese cbu del receptor");
                                     String cbu2= scanner.next();
                                     corriente=new CuentaCorrienteService();
@@ -243,6 +258,7 @@ public class Main {
                                     tipo= TipoMoneda.valueOf(scanner.next());
                                     System.out.println("Ingrese monto inicial");
                                     monto= scanner.nextDouble();
+                                    if(verificarNegativos(monto)){break;}
                                     System.out.println("Ingrese la clave de CBU que desea crear ");
                                     cbu= scanner.next();
                                     CajaDeAhorroService ahorro= new CajaDeAhorroService();
@@ -254,6 +270,7 @@ public class Main {
                                     cbu= scanner.next();
                                     System.out.println("Ingrese el monto a extraer");
                                     monto= scanner.nextDouble();
+                                    if(verificarNegativos(monto)){break;}
                                     ahorro=new CajaDeAhorroService();
                                     ahorro.extraer(monto,cbu);
                                     break;
@@ -262,6 +279,7 @@ public class Main {
                                     cbu= scanner.next();
                                     System.out.println("Ingrese monto a depositar");
                                     monto= scanner.nextDouble();
+                                    if(verificarNegativos(monto)){break;}
                                     ahorro=new CajaDeAhorroService();
                                     ahorro.depositar(monto,cbu);
                                     break;
